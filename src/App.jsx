@@ -16,16 +16,26 @@ const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
 function App() {
   /* Declaring an useState to catch user's input*/
   const [search, setSearch] = useState('');
-  /* Declaring an useState to store my API data */
+  /* Declaring an useState to store my movies API data */
   const [movies, setMovies] = useState([]);
+  /* Declaring an useState to store my TV series API data */
+  const [tvseries, setTvSeries] = useState([]);
 
   const handleSearchButton = () => {
     /* Using template literal to hide my API key */
-    const apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${envFile}&query=${search}`
-    /* Using Axios to add the API data to my setMovies function*/
-    axios.get(apiUrl)
-      .then(res => {
-        setMovies(res.data.results)
+    /* Declaring a variable for my movies API */
+    const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${envFile}&query=${search}`
+    /* Declaring a variable for my TV series API */
+    const seriesUrl = `https://api.themoviedb.org/3/search/tv?api_key=${envFile}&language=it_IT&query=${search}`;
+    /* Using Promise.all to add the APIs data to my functions*/
+    /* Had to look up its syntax since I used it once */
+    Promise.all([
+      axios.get(movieUrl),
+      axios.get(seriesUrl)
+    ])
+      .then(([movieRes, seriesRes]) => {
+        setMovies(movieRes.data.results);
+        setTvSeries(seriesRes.data.results);
       })
       .catch(err => {
         console.error(err)
@@ -78,7 +88,7 @@ function App() {
             </button>
           </div>
         </div>
-        {/* Mapping my API array in order to extract the keys I need */}
+        {/* Mapping my API array in order to extract the keys I need for the movies */}
         <div className="row">
           {movies.map(movie => (
             <div className="col" key={movie.id}>
@@ -95,6 +105,26 @@ function App() {
                     />
                   </p>
                   <h5>{movie.vote_average}</h5>
+                </div>
+              </div>
+            </div>
+          ))}
+          {/* Mapping my API array in order to extract the keys I need for the TV series */}
+          {tvseries.map(tv => (
+            <div className="col" key={tv.id}>
+              <div className="card">
+                <div className="card-body">
+                  <h3>{tv.name}</h3>
+                  <h4>{tv.original_name}</h4>
+                  <p>
+                    {/* Using the React Country Flag syntax I copied from the docu */}
+                    <ReactCountryFlag
+                      countryCode={getCountryCode(tv.original_language)}
+                      svg
+                      title={tv.original_language.toUpperCase()}
+                    />
+                  </p>
+                  <h5>{tv.vote_average}</h5>
                 </div>
               </div>
             </div>
