@@ -7,6 +7,8 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import axios from 'axios'
 /* Importing useState hook */
 import { useState } from 'react'
+/* Importing React Country Flag for my language keys*/
+import ReactCountryFlag from "react-country-flag"
 
 /* Importing my API key */
 const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
@@ -30,6 +32,31 @@ function App() {
       })
   }
 
+  /* Tried to add as many languages as I could from the React Country Flag docu */
+  const languages = {
+    en: 'GB',
+    it: 'IT',
+    fr: 'FR',
+    de: 'DE',
+    es: 'ES',
+    zh: 'CN',
+    jp: 'JP',
+    ko: 'KR',
+    pt: 'PT',
+    ru: 'RU',
+    ar: 'SA',
+    hi: 'IN',
+    tr: 'TR',
+    sv: 'SE',
+    no: 'NO',
+    da: 'DK',
+    nl: 'NL',
+    pl: 'PL',
+    he: 'IL',
+  }
+
+  /* Declaring a function that replaces the language string with a flag emoji from React Country FLag. If the flag doesn't exist, replace it with the UN flag (saw it online*/
+  const getCountryCode = (lang) => languages[lang] || 'UN'
 
   return (
     <>
@@ -59,7 +86,14 @@ function App() {
                 <div className='card-body'>
                   <h3>{movie.title}</h3>
                   <h4>{movie.original_title}</h4>
-                  <h5>{movie.original_language}</h5>
+                  {/* Using the React Country Flag syntax I copied from the docu */}
+                  <p>
+                    <ReactCountryFlag
+                      countryCode={getCountryCode(movie.original_language)}
+                      svg
+                      title={movie.original_language.toUpperCase()}
+                    />
+                  </p>
                   <h5>{movie.vote_average}</h5>
                 </div>
               </div>
