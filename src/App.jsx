@@ -93,6 +93,11 @@ function App() {
           {movies.map(movie => (
             <div className="col" key={movie.id}>
               <div className='card'>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  className="card-img-top"
+                />
                 <div className='card-body'>
                   <h3>{movie.title}</h3>
                   <h4>{movie.original_title}</h4>
@@ -104,7 +109,7 @@ function App() {
                       title={movie.original_language.toUpperCase()}
                     />
                   </p>
-                  <h5>{movie.vote_average}</h5>
+                  <h5>{Math.ceil(movie.vote_average / 2)}</h5>
                 </div>
               </div>
             </div>
@@ -113,6 +118,11 @@ function App() {
           {tvseries.map(tv => (
             <div className="col" key={tv.id}>
               <div className="card">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
+                  alt={tv.name}
+                  className="card-img-top"
+                />
                 <div className="card-body">
                   <h3>{tv.name}</h3>
                   <h4>{tv.original_name}</h4>
@@ -124,7 +134,7 @@ function App() {
                       title={tv.original_language.toUpperCase()}
                     />
                   </p>
-                  <h5>{tv.vote_average}</h5>
+                  <h5>{Math.ceil(tv.vote_average / 2)}</h5>
                 </div>
               </div>
             </div>
