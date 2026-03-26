@@ -9,6 +9,12 @@ import axios from 'axios'
 import { useState } from 'react'
 /* Importing React Country Flag for my language keys*/
 import ReactCountryFlag from "react-country-flag"
+/* Importing Font Awesome */
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+/* Importing full star icon */
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
+/* Importing empty star icon */
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
 
 /* Importing my API key */
 const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
@@ -68,6 +74,24 @@ function App() {
   /* Declaring a function that replaces the language string with a flag emoji from React Country FLag. If the flag doesn't exist, replace it with the UN flag (saw it online*/
   const getCountryCode = (lang) => languages[lang] || 'UN'
 
+  /* Declaring a function for stars and ratings */
+  const stars = (vote) => {
+    /* Had to divide by 2 to go from 0-10 to 0-5 */
+    const renderStars = Math.ceil(vote / 2)
+    /* Empty array where I store the stars */
+    const total = []
+
+    for (let i = 1; i <= 5; i++) {
+      if (i <= renderStars) {
+        total.push(<FontAwesomeIcon key={i} icon={solidStar} className='text-warning' />)
+      } else {
+        total.push(<FontAwesomeIcon key={i} icon={regularStar} className='text-warning' />)
+      }
+    }
+    /* Returning the array of star icons to render in the JSX */
+    return total
+  }
+
   return (
     <>
       <div className='container'>
@@ -109,7 +133,8 @@ function App() {
                       title={movie.original_language.toUpperCase()}
                     />
                   </p>
-                  <h5>{Math.ceil(movie.vote_average / 2)}</h5>
+                  {/* Displaying the stars */}
+                  <h5>{stars(movie.vote_average)}</h5>
                 </div>
               </div>
             </div>
@@ -134,7 +159,8 @@ function App() {
                       title={tv.original_language.toUpperCase()}
                     />
                   </p>
-                  <h5>{Math.ceil(tv.vote_average / 2)}</h5>
+                  {/* Displaying the stars */}
+                  <h5>{stars(tv.vote_average)}</h5>
                 </div>
               </div>
             </div>
