@@ -6,7 +6,7 @@ export default function Movies({ movies, getCountryCode, stars }) {
     return (
         <>
             <main>
-                <div className="container">
+                <div className="container mt-3">
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
                         {movies.map(movie => (
                             <div className="col" key={movie.id}>
@@ -14,9 +14,9 @@ export default function Movies({ movies, getCountryCode, stars }) {
                                     <img
                                         src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                                         alt={movie.title}
-                                        className="card-img-top"
+                                        className="card-img"
                                     />
-                                    <div className='card-body'>
+                                    <div className='card-img-overlay'>
                                         <h3>{movie.title}</h3>
                                         <h4>{movie.original_title}</h4>
                                         {/* Using the React Country Flag syntax I copied from the docu */}
@@ -28,6 +28,7 @@ export default function Movies({ movies, getCountryCode, stars }) {
                                             />
                                         </p>
                                         {/* Displaying the stars */}
+                                        <p>{movie.overview}</p>
                                         <h5>{stars(movie.vote_average)}</h5>
                                     </div>
                                 </div>
