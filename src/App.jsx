@@ -1,4 +1,3 @@
-
 /* Importing Bootstrap Icons, Bootstrap and Axios for API calls */
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'

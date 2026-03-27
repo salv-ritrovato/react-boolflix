@@ -1,0 +1,12 @@
+/* IMPORTING CUSTOM FONTS FROM GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* ROOT -- PAGE PALETTE & FONTS */
+:root {
+    --background: #080807;
+    --cards: #1A1810;
+    --accents: #D4AF37;
+    --secondarytexts: #C8B98A;
+    --text: #F2EFE8;
+    --mainfont: 'Cormorant Garamond', Georgia, serif;
+}
