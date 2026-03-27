@@ -7,10 +7,10 @@ export default function Movies({ movies, getCountryCode, stars }) {
         <>
             <main>
                 <div className="container">
-                    <div className="row">
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
                         {movies.map(movie => (
                             <div className="col" key={movie.id}>
-                                <div className='card'>
+                                <div className='card h-100'>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w342/${movie.poster_path}`}
                                         alt={movie.title}

@@ -50,7 +50,6 @@ function App() {
         console.error(err)
       })
   }
-
   /* Tried to add as many languages as I could from the React Country Flag docu */
   const languages = {
     en: 'GB',
@@ -73,17 +72,15 @@ function App() {
     pl: 'PL',
     he: 'IL',
   }
-
   /* Declaring a function that replaces the language string with a flag emoji from React Country Flag. If the flag doesn't exist, replace it with the UN flag (saw it online)*/
-  const getCountryCode = (lang) => languages[lang] || 'UN'
-
+  const getCountryCode = (lang) => languages[lang] || lang
   /* Declaring a function for stars and ratings */
   const stars = (vote) => {
     /* Had to divide by 2 to go from 0-10 to 0-5 */
     const renderStars = Math.ceil(vote / 2)
     /* Empty array where I store the stars */
     const total = []
-    
+
     for (let i = 1; i <= 5; i++) {
       if (i <= renderStars) {
         total.push(<FontAwesomeIcon key={i} icon={solidStar} className='text-warning' />)
