@@ -12,18 +12,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 /* Importing empty star icon */
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
-/* Importing my Header component */
-import Header from './components/Header'
+/* Importing ReactRouter */
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 /* Importing my Movies component */
 import Movies from './components/Movies'
 /* Importing my Series component */
 import Series from './components/Series'
 /* Importing my Home component */
 import Home from './components/Home'
+/* Importing DefaultLayout */
+import DefaultLayout from './layout/DefaultLayout'
 
 /* Declaring a variable containing my API key */
 const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
-
+ 
 function App() {
   /* Declaring an useState to catch user's input*/
   const [search, setSearch] = useState('');
@@ -33,6 +35,7 @@ function App() {
   const [tvseries, setTvSeries] = useState([]);
 
   const handleSearchButton = () => {
+    console.log('ciao');
     /* Using template literal to hide my API key */
     /* Declaring a variable for my movies API */
     const movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=${envFile}&query=${search}`
@@ -95,12 +98,15 @@ function App() {
   }
 
   return (
-    <>
-      <Header search={search} setSearch={setSearch} handleSearchButton={handleSearchButton} />
-      <Home/>
-      <Movies movies={movies} getCountryCode={getCountryCode} stars={stars} />
-      <Series tvseries={tvseries} getCountryCode={getCountryCode} stars={stars} />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<DefaultLayout search={search} setSearch={setSearch} handleSearchButton={handleSearchButton} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies movies={movies} getCountryCode={getCountryCode} stars={stars} />} />
+          <Route path="/series" element={<Series tvseries={tvseries} getCountryCode={getCountryCode} stars={stars} />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -32,9 +32,8 @@ export default function Header({ search, setSearch, handleSearchButton }) {
                         ))}
                     </ul>
                     {/* USER INPUT */}
-                    <form
+                    <div
                         className="d-flex"
-                        onSubmit={(e) => { e.preventDefault(); handleSearchButton(); }}
                     >
                         <input
                             type="text"
@@ -45,12 +44,13 @@ export default function Header({ search, setSearch, handleSearchButton }) {
                         />
                         {/* SEARCH BUTTON */}
                         <button
-                            type='submit'
+                            type='text'
                             className='btn btn-search'
+                            onClick={handleSearchButton}
                         >
                             Search
                         </button>
-                    </form>
+                    </div>
                 </div>
             </nav>
         </header>

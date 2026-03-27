@@ -18,8 +18,8 @@ export default function Series({ tvseries, getCountryCode, stars }) {
                                         className="card-img"
                                     />
                                     <div className='card-img-overlay'>
-                                        <h3>{tv.name}</h3>
-                                        <h4>{tv.original_name}</h4>
+                                        <h5>{tv.name}</h5>
+                                        <small>{tv.original_name}</small>
                                         <p>
                                             {/* Using the React Country Flag syntax I copied from the docu */}
                                             <ReactCountryFlag
@@ -29,7 +29,7 @@ export default function Series({ tvseries, getCountryCode, stars }) {
                                             />
                                         </p>
                                         {/* Displaying the stars */}
-                                        <p>{tv.overview}</p>
+                                        <p>{tv.overview.length > 100 ? `${tv.overview.slice(0, 100)}...` : tv.overview}</p>
                                         <h5>{stars(tv.vote_average)}</h5>
                                     </div>
                                 </div>
