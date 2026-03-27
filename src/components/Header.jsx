@@ -41,7 +41,7 @@ export default function Header({ search, setSearch, handleSearchButton }) {
                             className="form-control me-2"
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            placeholder="Search movie"
+                            placeholder="Get started!"
                         />
                         {/* SEARCH BUTTON */}
                         <button

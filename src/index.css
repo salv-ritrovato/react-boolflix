@@ -79,3 +79,56 @@
 .card:hover .card-img {
     opacity: 0.3;
 }
+
+/* BODY & MAIN */
+body {
+    background-color: var(--background) !important;
+    color: var(--text-main);
+}
+
+.herobanner {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.innertxt {
+    max-width: 700px;
+}
+
+.welcomemsg {
+    color: var(--accents);
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+}
+
+.title-accent {
+    color: var(--accents);
+    font-style: var(--text-main)
+}
+
+.subtitle {
+    color: var(--secondarytexts);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.userhint {
+    color: var(--secondarytexts);
+    font-size: 0.95rem;
+    border: 1px solid var(--accents);
+    display: inline-block;
+    padding: 0.5rem 1rem;
+}

@@ -18,6 +18,8 @@ import Header from './components/Header'
 import Movies from './components/Movies'
 /* Importing my Series component */
 import Series from './components/Series'
+/* Importing my Home component */
+import Home from './components/Home'
 
 /* Declaring a variable containing my API key */
 const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
@@ -95,6 +97,7 @@ function App() {
   return (
     <>
       <Header search={search} setSearch={setSearch} handleSearchButton={handleSearchButton} />
+      <Home/>
       <Movies movies={movies} getCountryCode={getCountryCode} stars={stars} />
       <Series tvseries={tvseries} getCountryCode={getCountryCode} stars={stars} />
     </>
