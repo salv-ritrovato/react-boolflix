@@ -6,8 +6,6 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import axios from 'axios'
 /* Importing useState hook */
 import { useState } from 'react'
-/* Importing React Country Flag for my language keys*/
-import ReactCountryFlag from "react-country-flag"
 /* Importing Font Awesome */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 /* Importing full star icon */
@@ -16,8 +14,12 @@ import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
 /* Importing my Header component */
 import Header from './components/Header'
+/* Importing my Movies component */
+import Movies from './components/Movies'
+/* Importing my Series component */
+import Series from './components/Series'
 
-/* Importing my API key */
+/* Declaring a variable containing my API key */
 const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
 
 function App() {
@@ -81,7 +83,7 @@ function App() {
     const renderStars = Math.ceil(vote / 2)
     /* Empty array where I store the stars */
     const total = []
-
+    
     for (let i = 1; i <= 5; i++) {
       if (i <= renderStars) {
         total.push(<FontAwesomeIcon key={i} icon={solidStar} className='text-warning' />)
@@ -95,63 +97,9 @@ function App() {
 
   return (
     <>
-      <Header search={search} setSearch={setSearch} handleSearchButton={handleSearchButton}/>
-      <div className='container'>
-        {/* Mapping my API array in order to extract the keys I need for the movies */}
-        <div className="row">
-          {movies.map(movie => (
-            <div className="col" key={movie.id}>
-              <div className='card'>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  alt={movie.title}
-                  className="card-img-top"
-                />
-                <div className='card-body'>
-                  <h3>{movie.title}</h3>
-                  <h4>{movie.original_title}</h4>
-                  {/* Using the React Country Flag syntax I copied from the docu */}
-                  <p>
-                    <ReactCountryFlag
-                      countryCode={getCountryCode(movie.original_language)}
-                      svg
-                      title={movie.original_language.toUpperCase()}
-                    />
-                  </p>
-                  {/* Displaying the stars */}
-                  <h5>{stars(movie.vote_average)}</h5>
-                </div>
-              </div>
-            </div>
-          ))}
-          {/* Mapping my API array in order to extract the keys I need for the TV series */}
-          {tvseries.map(tv => (
-            <div className="col" key={tv.id}>
-              <div className="card">
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`}
-                  alt={tv.name}
-                  className="card-img-top"
-                />
-                <div className="card-body">
-                  <h3>{tv.name}</h3>
-                  <h4>{tv.original_name}</h4>
-                  <p>
-                    {/* Using the React Country Flag syntax I copied from the docu */}
-                    <ReactCountryFlag
-                      countryCode={getCountryCode(tv.original_language)}
-                      svg
-                      title={tv.original_language.toUpperCase()}
-                    />
-                  </p>
-                  {/* Displaying the stars */}
-                  <h5>{stars(tv.vote_average)}</h5>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Header search={search} setSearch={setSearch} handleSearchButton={handleSearchButton} />
+      <Movies movies={movies} getCountryCode={getCountryCode} stars={stars} />
+      <Series tvseries={tvseries} getCountryCode={getCountryCode} stars={stars} />
     </>
   )
 }
