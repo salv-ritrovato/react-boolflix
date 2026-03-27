@@ -14,6 +14,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons'
 /* Importing empty star icon */
 import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons'
+/* Importing my Header component */
+import Header from './components/Header'
 
 /* Importing my API key */
 const envFile = import.meta.env.VITE_MOVIEDB_API_KEY
@@ -70,7 +72,7 @@ function App() {
     he: 'IL',
   }
 
-  /* Declaring a function that replaces the language string with a flag emoji from React Country FLag. If the flag doesn't exist, replace it with the UN flag (saw it online*/
+  /* Declaring a function that replaces the language string with a flag emoji from React Country Flag. If the flag doesn't exist, replace it with the UN flag (saw it online)*/
   const getCountryCode = (lang) => languages[lang] || 'UN'
 
   /* Declaring a function for stars and ratings */
@@ -93,24 +95,8 @@ function App() {
 
   return (
     <>
+      <Header search={search} setSearch={setSearch} handleSearchButton={handleSearchButton}/>
       <div className='container'>
-        <div className="row">
-          <div className="col">
-            <input
-              type="text"
-              className="form-control"
-              /* Using my search variable to catch user's input */
-              value={search}
-              /* Using my setSearch function to target user's input */
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search movie"
-            />
-            {/* Calls the search function when the user clicks the button */}
-            <button className="btn btn-primary" onClick={handleSearchButton}>
-              Search
-            </button>
-          </div>
-        </div>
         {/* Mapping my API array in order to extract the keys I need for the movies */}
         <div className="row">
           {movies.map(movie => (

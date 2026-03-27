@@ -1,5 +1,5 @@
 /* IMPORTING CUSTOM FONTS FROM GOOGLE FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* ROOT -- PAGE PALETTE & FONTS */
 :root {
@@ -7,6 +7,47 @@
     --cards: #1A1810;
     --accents: #D4AF37;
     --secondarytexts: #C8B98A;
-    --text: #F2EFE8;
-    --mainfont: 'Cormorant Garamond', Georgia, serif;
+    --text-main: #F2EFE8;
+    --mainfont: "Roboto", sans-serif;
+}
+
+/* HEADER -- NAVBAR */
+.navbar {
+    background-color: var(--background);
+    font-family: var(--mainfont)
+}
+
+.mainlogo {
+    color: var(--text-main);
+    font-size: 1.50rem;
+    font-weight: 600;
+}
+
+.logoDot {
+    color: var(--accents);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.navbar .nav-link {
+    color: var(--secondarytexts);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.navbar .nav-link:hover {
+    color: var(--text-main);
+}
+
+.navbar .btn-search {
+    color: var(--background);
+    background-color: var(--accents);
+    border: 1px solid var(--accents);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.navbar .btn-search:hover {
+    color: var(--background);
+    background-color: var(--accents);
 }
